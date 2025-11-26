@@ -1,184 +1,186 @@
+/* assets/css/style.css */
+
+/* Reset básico e fonte moderna */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais limpa */
 }
 
 body {
-    background-color: #090909;
-    font-family: 'Verdana', sans-serif;
+    background-color: #121212; /* Um preto um pouco mais suave que o #090909 */
+    color: #e0e0e0; /* Texto claro padrão */
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui header, main e footer */
 }
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    padding: 20px 0;
 }
 
 h1 {
-    color: #333333;
-    text-align: center;
-    margin-top: 20px;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
 #game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1; /* Ocupa o espaço central */
+    justify-content: center;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
+/* --- O TABULEIRO --- */
 #game-board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
-    margin-top: 20px;
-    border: 10px solid #333333;
-    border-radius: 10px;    
+    /* A MÁGICA ACONTECE AQUI: */
+    gap: 10px; /* Espaço entre as células em vez de bordas */
+    padding: 15px;
+    background-color: #1e1e1e; /* Fundo do tabuleiro ligeiramente diferente */
+    border-radius: 20px; /* Bordas arredondadas no container */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Sombra suave para profundidade */
 }
 
+/* --- AS CÉLULAS --- */
 .cell {
     width: 100px;
     height: 100px;
-    background-color: #555;
+    background-color: #2a2a2a; /* Cor base da célula */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 3.5rem; /* Fonte maior para X e O */
+    font-weight: bold;
     cursor: pointer;
-    border: 2.5px solid #333333;
-    transition: background-color 0.3s;
+    border-radius: 12px; /* Células arredondadas */
+    border: none; /* Removemos as bordas antigas */
+    color: transparent; /* Esconde os números 1-9 iniciais */
+    transition: all 0.2s ease; /* Transição suave para tudo */
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.05), 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.cell:hover {
-    background-color: #e0e0e0;
+/* Efeito ao passar o mouse */
+.cell:hover:not(.disabled) {
+    background-color: #3a3a3a; /* Um pouco mais claro */
+    transform: translateY(-3px); /* Efeito de levantar ligeiramente */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-#reset-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #333333;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Efeito ao clicar */
+.cell:active:not(.disabled) {
+    transform: scale(0.95); /* Efeito de pressionar */
 }
 
-#reset-button:hover {
-    background-color: #555555;
+/* --- AS PEÇAS (X e O) --- */
+/* Adicionamos uma animação de "pop" quando elas aparecem */
+.cell.x, .cell.o {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+    color: inherit; /* Traz a cor de volta (sobrescreve o transparent) */
 }
 
+/* Estilo Neon para o X */
+.cell.x {
+    color: #ff3e3e;
+    text-shadow: 0 0 10px rgba(255, 62, 62, 0.7), 0 0 20px rgba(255, 62, 62, 0.3);
+}
+
+/* Estilo Neon para o O */
+.cell.o {
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.7), 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+/* Células desativadas */
+.cell.disabled {
+    pointer-events: none;
+    /* Mantém o estilo do X ou O se já estiverem lá */
+}
+
+
+/* --- CONTROLES E RODAPÉ --- */
 #game-info {
-    margin-top: 15px;
+    margin-top: 25px;
     text-align: center;
 }
 
 #turn-indicator {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #333333;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #a0a0a0;
 }
+
+/* Botão de Reiniciar Moderno */
+#reset-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #333, #555); /* Degradê sutil */
+    color: #ffffff;
+    border: none;
+    border-radius: 50px; /* Botão estilo pílula */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #444, #666);
+}
+
+#reset-button:active {
+    transform: translateY(1px);
+}
+
+/* Indicadores de status */
+#turn-indicator.win { color: #00ff88; text-shadow: 0 0 10px rgba(0,255,136,0.3); font-weight: bold; }
+#turn-indicator.draw { color: #ffc107; font-weight: bold; }
 
 footer {
-    position: absolute;
-    bottom: 10px;
+    padding: 15px;
     text-align: center;
-    width: 100%;
-    color: #666666;
-    font-size: 0.9rem;
+    color: #666;
+    font-size: 0.85rem;
 }
 
-footer a {
-    color: #666666;
-    text-decoration: none;
+/* --- ANIMAÇÕES --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-footer a:hover {
-    text-decoration: underline;
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 500px) {
     #game-board {
         grid-template-columns: repeat(3, 80px);
         grid-template-rows: repeat(3, 80px);
         gap: 8px;
     }
-
-    .cell {
-        width: 80px;
-        height: 80px;
-        font-size: 1.5rem;
-    }
+    .cell { width: 80px; height: 80px; font-size: 2.8rem; }
 }
 
 @media (max-width: 350px) {
     #game-board {
-        grid-template-columns: repeat(3, 60px);
-        grid-template-rows: repeat(3, 60px);
-        gap: 6px;
+        grid-template-columns: repeat(3, 65px);
+        grid-template-rows: repeat(3, 65px);
+        gap: 5px;
     }
-
-    .cell {
-        width: 60px;
-        height: 60px;
-        font-size: 1.2rem;
-    }
+    .cell { width: 65px; height: 65px; font-size: 2.2rem; }
 }
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-#game-container {
-    animation: fadeIn 1s ease-in;
-}
-
-.cell.x {
-    color: #ff4d4d;
-}
-
-.cell.o {
-    color: #4d79ff;
-}
-
-.cell.disabled {
-    pointer-events: none;
-    background-color: #dcdcdc;
-}
-
-#turn-indicator.win {
-    color: #28a745;
-    font-weight: bold;
-}
-
-#turn-indicator.draw {
-    color: #ffc107;
-    font-weight: bold;
-}
-
-#turn-indicator.turn {
-    color: #333333;
-}
-
-#reset-button:active {
-    transform: scale(0.95);
-}
-
-.cell:active {
-    background-color: #d0d0d0;
-}
-
-footer {
-    font-size: 0.8rem;
-}
-
-footer a {
-    font-weight: bold;
-}
-
-footer a:active {
-    color: #444444;
-}
-
