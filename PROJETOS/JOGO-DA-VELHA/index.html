@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha #</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Jogo da Velha</h1>
+    </header>
+    <main id="game-container">
+        <div id="game-board">
+            <div class="row">
+                <section class="cell" data-index="1">1</section>
+                <section class="cell" data-index="2">2</section>
+                <section class="cell" data-index="3">3</section>
+            </div>
+            <div class="row">
+                <section class="cell" data-index="4">4</section>
+                <section class="cell" data-index="5">5</section>
+                <section class="cell" data-index="6">6</section>
+            </div>
+            <div class="row">
+                <section class="cell" data-index="7">7</section>
+                <section class="cell" data-index="8">8</section>
+                <section class="cell" data-index="9">9</section>
+            </div>
+        </div>
+        <div id="game-info">
+            <p id="turn-indicator">Vez de: X</p>
+            <button id="reset-button">Reiniciar Jogo</button>
+        </div>
+    </main>
+    <footer>
+        <p>Desenvolvido por Matheus FLCruz</p>
+    </footer>
+    <script src="assets/py/jogo-da-velha.py"></script>
+</body>
+</html>
