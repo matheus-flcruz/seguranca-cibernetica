@@ -15,23 +15,23 @@ Sua tarefa é escrever um **programa simples que finge jogar tic-tac-toe com o u
 
 A sessão de exemplo com o programa pode ter a seguinte aparência:
 
-![Jogada 1](imgs/jogada_1.png)
+![Jogada 1](versao-js/assets/imgs/jogada_1.png)
 
 Digite seu movimento: 1
 
-![Jogada 2 e 3](imgs/jogada_2_e_3.png)
+![Jogada 2 e 3](versao-js/assets/imgs/jogada_2_e_3.png)
 
 Digite seu movimento: 8
 
-![Jogada 4 e 5](imgs/jogada_4_e_5.png)
+![Jogada 4 e 5](versao-js/assets/imgs/jogada_4_e_5.png)
 
 Digite seu movimento: 4
 
-![Jogada 6 e 7](imgs/jogada_6_e_7.png)
+![Jogada 6 e 7](versao-js/assets/imgs/jogada_6_e_7.png)
 
 Digite seu movimento: 7
 
-![Jogada 8](imgs/jogada_8.png)
+![Jogada 8](versao-js/assets/imgs/jogada_6_e_7.png)
 
 Você GANHOU!!!!!!!!!!
 
